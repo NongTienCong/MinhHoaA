@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ứng dụng mô phỏng CTDL & GT</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Tiêu đề + menu -->
+  <header>
+    <div class="header-container">
+      <h1>Mô phỏng Cấu trúc dữ liệu & Giải thuật</h1>
+      <nav>
+        <ul>
+          <li>
+            <a href="#" onclick="onModelSelected('About')">Giới thiệu</a>
+          </li>
+          <li>
+            <a href="#">Cấu trúc dữ liệu</a>
+            <ul>
+              <li><a href="#" onclick="onModelSelected('Array')">Mảng (Array)</a></li>
+              <li><a href="#" onclick="onModelSelected('List')">Danh sách (Singly Linked List)</a></li>
+              <li><a href="#" onclick="onModelSelected('Stack')">Ngăn xếp (Stack)</a></li>
+              <li><a href="#" onclick="onModelSelected('Queue')">Hàng đợi (Queue)</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">Giải thuật</a>
+            <ul>
+              <li><a href="#" onclick="onModelSelected('Sort')">Sắp xếp</a></li>
+              <li><a href="#" onclick="onModelSelected('Search')">Tìm kiếm</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Giao diện chính chia 3 vùng -->
+  <main id="main-layout">
+    <!-- Vùng điều khiển -->
+    <section id="control-panel">
+      <h3>🔧 Điều khiển</h3>
+      <div id="control-content"></div>
+    </section>
+
+    <!-- Vùng mô phỏng -->
+    <section id="canvas-area">
+      <canvas id="simulation-canvas"></canvas>
+    </section>
+
+    <!-- Vùng giải thích -->
+    <section id="explanation-panel">
+      <h3>📝 Giải thích</h3>
+      <div id="explanation-content"></div>
+    </section>
+  </main>
+
+  <script type="module" src="main.js"></script>
+
+  <!-- Footer -->
+  <footer>
+    &copy; 2025 - Nông Tiến Công - Thạc sỹ Khoa học máy tính - Trường CĐSP Lạng Sơn ❤️
+  </footer>
+  
+</body>
+</html>
