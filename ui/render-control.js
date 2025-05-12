@@ -69,34 +69,45 @@ export function createButton(text, onClick) {
   }
 
   // Hàm hiển thị nội dung file giới thiệu trong Dialog bổ sung
-  export async function showDialog(fileUrl) {
+  export async function showDialog(fileOrText) {
+    let text = "";
+
     try {
-        const response = await fetch(fileUrl);
-        const text = await response.text();
+        // Nếu là URL kết thúc bằng .txt → fetch như cũ
+        if (typeof fileOrText === "string" && (fileOrText.startsWith("http") || fileOrText.endsWith(".txt"))) {
+            const response = await fetch(fileOrText);
+            text = await response.text();
+        } 
+        // Nếu là module .js → truyền thẳng vào như chuỗi
+        else if (typeof fileOrText === "string") {
+            text = fileOrText;
+        } 
+        // Nếu là kiểu dữ liệu không xác định
+        else {
+            throw new Error("Không thể hiển thị nội dung từ kiểu dữ liệu không hợp lệ.");
+        }
 
         let dialog = document.getElementById('my-dialog');
 
         if (!dialog) {
-            // Tạo dialog box nếu chưa tồn tại
             dialog = document.createElement('dialog');
             dialog.id = 'my-dialog';
             dialog.style.width = '60%';
             dialog.style.maxWidth = '100%';
-            dialog.style.padding = '0'; // Loại bỏ padding mặc định
+            dialog.style.padding = '0';
             dialog.style.border = '1px solid #ccc';
             dialog.style.borderRadius = '5px';
-            dialog.style.position = 'fixed'; // Cố định vị trí
+            dialog.style.position = 'fixed';
             dialog.style.top = '50%';
             dialog.style.left = '50%';
-            dialog.style.transform = 'translate(-50%, -50%)'; // Căn giữa chính xác
-            dialog.style.overflow = 'hidden'; // Ẩn thanh cuộn thừa
+            dialog.style.transform = 'translate(-50%, -50%)';
+            dialog.style.overflow = 'hidden';
 
-            document.body.appendChild(dialog); // Thêm vào body (chỉ khi tạo mới)
+            document.body.appendChild(dialog);
         } else {
-            dialog.innerHTML = ''; // Reset nội dung (nếu cần)
+            dialog.innerHTML = '';
         }
 
-        // Thêm tiêu đề
         const titleBar = document.createElement('div');
         titleBar.style.padding = '10px';
         titleBar.style.backgroundColor = '#f0f0f0';
@@ -104,11 +115,10 @@ export function createButton(text, onClick) {
         titleBar.textContent = 'Giới thiệu về ứng dụng';
         dialog.appendChild(titleBar);
 
-        // Thêm nội dung
         const content = document.createElement('div');
         content.style.padding = '20px';
-        content.style.overflowY = 'auto'; // Thêm thanh cuộn khi cần
-        content.style.maxHeight = '400px'; // Chiều cao tối đa cho nội dung
+        content.style.overflowY = 'auto';
+        content.style.maxHeight = '400px';
         const pre = document.createElement('pre');
         pre.style.whiteSpace = 'pre-wrap';
         pre.style.wordBreak = 'break-word';
@@ -116,22 +126,87 @@ export function createButton(text, onClick) {
         content.appendChild(pre);
         dialog.appendChild(content);
 
-        // Thêm nút OK
         const buttonContainer = document.createElement('div');
         buttonContainer.style.padding = '10px';
-        buttonContainer.style.display = 'flex'; // Sử dụng Flexbox cho buttonContainer
-        buttonContainer.style.justifyContent = 'flex-end'; // Căn phải nút
+        buttonContainer.style.display = 'flex';
+        buttonContainer.style.justifyContent = 'flex-end';
         buttonContainer.style.backgroundColor = '#f0f0f0';
 
-        const okButton = createButton("Đóng", () => {dialog.close();});
+        const okButton = createButton("Đóng", () => dialog.close());
         okButton.style.width = "100px";
         buttonContainer.appendChild(okButton);
         dialog.appendChild(buttonContainer);
 
-        dialog.showModal(); // Hiển thị dialog
-
+        dialog.showModal();
     } catch (error) {
-        console.error("Lỗi khi đọc file txt:", error);
-        alert("Không thể tải nội dung file.");
+        console.error("Lỗi khi hiển thị nội dung:", error);
+        alert("Không thể hiển thị nội dung.");
     }
 }
+
+//   export async function showDialog(fileUrl) {
+//     try {
+//         const response = await fetch(fileUrl);
+//         const text = await response.text();
+
+//         let dialog = document.getElementById('my-dialog');
+
+//         if (!dialog) {
+//             // Tạo dialog box nếu chưa tồn tại
+//             dialog = document.createElement('dialog');
+//             dialog.id = 'my-dialog';
+//             dialog.style.width = '60%';
+//             dialog.style.maxWidth = '100%';
+//             dialog.style.padding = '0'; // Loại bỏ padding mặc định
+//             dialog.style.border = '1px solid #ccc';
+//             dialog.style.borderRadius = '5px';
+//             dialog.style.position = 'fixed'; // Cố định vị trí
+//             dialog.style.top = '50%';
+//             dialog.style.left = '50%';
+//             dialog.style.transform = 'translate(-50%, -50%)'; // Căn giữa chính xác
+//             dialog.style.overflow = 'hidden'; // Ẩn thanh cuộn thừa
+
+//             document.body.appendChild(dialog); // Thêm vào body (chỉ khi tạo mới)
+//         } else {
+//             dialog.innerHTML = ''; // Reset nội dung (nếu cần)
+//         }
+
+//         // Thêm tiêu đề
+//         const titleBar = document.createElement('div');
+//         titleBar.style.padding = '10px';
+//         titleBar.style.backgroundColor = '#f0f0f0';
+//         titleBar.style.fontWeight = 'bold';
+//         titleBar.textContent = 'Giới thiệu về ứng dụng';
+//         dialog.appendChild(titleBar);
+
+//         // Thêm nội dung
+//         const content = document.createElement('div');
+//         content.style.padding = '20px';
+//         content.style.overflowY = 'auto'; // Thêm thanh cuộn khi cần
+//         content.style.maxHeight = '400px'; // Chiều cao tối đa cho nội dung
+//         const pre = document.createElement('pre');
+//         pre.style.whiteSpace = 'pre-wrap';
+//         pre.style.wordBreak = 'break-word';
+//         pre.textContent = text;
+//         content.appendChild(pre);
+//         dialog.appendChild(content);
+
+//         // Thêm nút OK
+//         const buttonContainer = document.createElement('div');
+//         buttonContainer.style.padding = '10px';
+//         buttonContainer.style.display = 'flex'; // Sử dụng Flexbox cho buttonContainer
+//         buttonContainer.style.justifyContent = 'flex-end'; // Căn phải nút
+//         buttonContainer.style.backgroundColor = '#f0f0f0';
+
+//         const okButton = createButton("Đóng", () => {dialog.close();});
+//         okButton.style.width = "100px";
+//         buttonContainer.appendChild(okButton);
+//         dialog.appendChild(buttonContainer);
+
+//         dialog.showModal(); // Hiển thị dialog
+
+//     } catch (error) {
+//         console.error("Lỗi khi đọc file txt:", error);
+//         alert("Không thể tải nội dung file.");
+//     }
+// }

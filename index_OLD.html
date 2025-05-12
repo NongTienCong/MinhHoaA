@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Minh họa Cấu trúc Dữ liệu & Giải thuật</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="menu-bar"></div>
+    <div id="main-layout" style="display: none;">
+        <div id="control-panel"></div>
+        <canvas id="simulation-canvas" width="600" height="400"></canvas>
+        <div id="explanation-panel">
+            <h4>Giải thích:</h4>
+            <ul>
+              <li><b>Push</b>: Thêm phần tử vào đỉnh stack nếu chưa đầy.</li>
+              <li><b>Pop</b>: Chỉ thay đổi con trỏ TOP, giá trị vẫn nằm trong mảng.</li>
+              <li><b>Peek</b>: Xem giá trị phần tử ở đỉnh stack.</li>
+              <li><b>isEmpty</b>: Kiểm tra stack có rỗng không.</li>
+              <li><b>isFull</b>: Kiểm tra stack có đầy không.</li>
+              <li><b>Clear</b>: Xóa toàn bộ phần tử trong stack.</li>
+            </ul>
+            <pre id="pseudo-code" style="background:#f5f5f5;padding:10px;border:1px solid #ddd;margin-top:10px;"></pre>
+        </div>
+    </div>
+
+    <dialog id="about-dialog">
+        <h3>Giới thiệu ứng dụng</h3>
+        <p>Ứng dụng này giúp sinh viên hiểu rõ hơn về hoạt động của các cấu trúc dữ liệu và giải thuật thông qua mô phỏng trực quan.</p>
+        <button onclick="document.getElementById('about-dialog').close()">Đóng</button>
+    </dialog>
+
+    <script type="module" src="main.js"></script>
+    
+    <footer style="text-align: center; padding: 10px; font-size: 13px; color: #666; border-top: 1px solid #ccc; margin-top: 20px;">
+        Bản quyền (C) Nông Tiến Công - Thạc sỹ khoa học máy tính - Cao đẳng Sư phạm Lạng Sơn
+    </footer></body>
+</html>
+
+<!-- <!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Minh họa Cấu trúc Dữ liệu & Giải thuật</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="menu-bar"></div>
+    <div id="main-layout" style="display: none;">
+        <div id="control-panel"></div>
+        <canvas id="simulation-canvas" width="600" height="400"></canvas>
+        <div id="explanation-panel"></div>
+    </div>
+
+    <dialog id="about-dialog">
+        <h3>Giới thiệu ứng dụng</h3>
+        <p>Ứng dụng này giúp sinh viên hiểu rõ hơn về hoạt động của các cấu trúc dữ liệu và giải thuật thông qua mô phỏng trực quan.</p>
+        <button onclick="document.getElementById('about-dialog').close()">Đóng</button>
+    </dialog>
+
+    <script type="module" src="./js/main.js"></script>
+
+    <footer style="text-align: center; padding: 10px; font-size: 13px; color: #666; border-top: 1px solid #ccc; margin-top: 20px;">
+        Bản quyền (C) Nông Tiến Công - Thạc sỹ khoa học máy tính - Cao đẳng Sư phạm Lạng Sơn
+    </footer>
+</body>
+</html> -->

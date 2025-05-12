@@ -19,6 +19,7 @@ import { SortSimulator } from './modules/sort.js';
 import { setupSortUI } from './ui/sort-ui.js';
 
 import { showDialog } from './ui/render-control.js';
+import { aboutText } from './about-content.js';
 //----------------------------------------------
 
 function onModelSelected(name) {
@@ -36,7 +37,7 @@ function onModelSelected(name) {
     switch (name) {
         case 'About':
           // Gọi hàm showDialog() để hiển thị giới thiệu
-          showDialog("../about.txt");
+          showDialog(aboutText);
           break;
         case 'Array':
           // Tạo hoặc gọi hàm để hiển thị mô phỏng mảng (Array)
