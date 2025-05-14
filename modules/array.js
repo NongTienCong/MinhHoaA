@@ -8,18 +8,15 @@ export class ArraySimulator {
         this.boxHeight = 40;
         this.spacing = 10;
         this.addressBase = 1000;
-    
         // Khai báo sẵn để dùng chung
         this.canvas = document.getElementById("simulation-canvas");
         this.ctx = this.canvas.getContext("2d");
     }
-
     init(size) {
         this.size = size;
         this.array = new Array(size).fill(null);
         this.render();
     }
-
     set(index, value) {
         if (index >= 0 && index < this.size) {
             this.array[index] = value;
@@ -27,7 +24,6 @@ export class ArraySimulator {
             this.render();
         }
     }
-
     get(index) {
         if (index >= 0 && index < this.size) {
             this.flash(index, 'get');
@@ -35,20 +31,10 @@ export class ArraySimulator {
         }
         return null;
     }
-
-    // update(index, value) {
-    //     if (index >= 0 && index < this.size) {
-    //         this.array[index] = value;
-    //         this.flash(index, 'update');
-    //         this.render();
-    //     }
-    // }
-
     traverse(delay = 500) {
         let i = 0;
         const step = () => {
             if (i >= this.size) return;
-
             this.flash(i, 'traverse');
             setTimeout(() => {
                 this.render();

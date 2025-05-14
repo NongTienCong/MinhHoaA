@@ -1,4 +1,4 @@
-// QuickSort(low, high)
+export const quickSortText = `// QuickSort(low, high)
   if(low < high)
     partition(low, high, pivot)
     QuickSort(low, pivot-1)
@@ -18,4 +18,4 @@
       r--
   if(low < r)
     swap(a[low], a[r])
-  pivot = r
+  pivot = r`;

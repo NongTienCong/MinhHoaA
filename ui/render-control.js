@@ -1,3 +1,6 @@
+import { quickSortText } from '../modules/quickSort-content.js';
+import { mergeSortText } from '../modules/mergeSort-content.js';
+
 // Helper tạo input
 export function createInput(placeholder, type = "text") {
     const input = document.createElement("input");
@@ -57,14 +60,20 @@ export function createButton(text, onClick) {
     if (pre) pre.innerText = code;
   }
 
-  // Hàm đọc nội dung file .txt
-  export async function showFileTxt(fileUrl) {
+  // Hàm đọc nội dung file .js
+  export async function showFileTxt(typeOfSort) {
     try {
-        const response = await fetch(fileUrl);
-        const text = await response.text();
+        //const response = await fetch(fileUrl);
+        //const text = await response.text();
+        let text = null;
+        if (typeOfSort === "quickSort") {
+            text = quickSortText;
+        } else if (typeOfSort === "mergeSort") {
+            text = mergeSortText;
+        }
         showPseudo(text); // Giả sử showPseudo đã được định nghĩa
     } catch (error) {
-        console.error("Lỗi khi đọc file txt:", error);
+        console.error("Lỗi khi đọc file:", error);
     }
   }
 
@@ -73,16 +82,21 @@ export function createButton(text, onClick) {
     let text = "";
 
     try {
-        // Nếu là URL kết thúc bằng .txt → fetch như cũ
-        if (typeof fileOrText === "string" && (fileOrText.startsWith("http") || fileOrText.endsWith(".txt"))) {
-            const response = await fetch(fileOrText);
-            text = await response.text();
-        } 
+        // // Nếu là URL kết thúc bằng .txt → fetch như cũ
+        // if (typeof fileOrText === "string" && (fileOrText.startsWith("http") || fileOrText.endsWith(".txt"))) {
+        //     const response = await fetch(fileOrText);
+        //     text = await response.text();
+        // } 
+        // // Nếu là module .js → truyền thẳng vào như chuỗi
+        // else if (typeof fileOrText === "string") {
+        //     text = fileOrText;
+        // } 
+        // // Nếu là kiểu dữ liệu không xác định
+        
         // Nếu là module .js → truyền thẳng vào như chuỗi
-        else if (typeof fileOrText === "string") {
+        if (typeof fileOrText === "string") {
             text = fileOrText;
-        } 
-        // Nếu là kiểu dữ liệu không xác định
+        }
         else {
             throw new Error("Không thể hiển thị nội dung từ kiểu dữ liệu không hợp lệ.");
         }
@@ -143,70 +157,3 @@ export function createButton(text, onClick) {
         alert("Không thể hiển thị nội dung.");
     }
 }
-
-//   export async function showDialog(fileUrl) {
-//     try {
-//         const response = await fetch(fileUrl);
-//         const text = await response.text();
-
-//         let dialog = document.getElementById('my-dialog');
-
-//         if (!dialog) {
-//             // Tạo dialog box nếu chưa tồn tại
-//             dialog = document.createElement('dialog');
-//             dialog.id = 'my-dialog';
-//             dialog.style.width = '60%';
-//             dialog.style.maxWidth = '100%';
-//             dialog.style.padding = '0'; // Loại bỏ padding mặc định
-//             dialog.style.border = '1px solid #ccc';
-//             dialog.style.borderRadius = '5px';
-//             dialog.style.position = 'fixed'; // Cố định vị trí
-//             dialog.style.top = '50%';
-//             dialog.style.left = '50%';
-//             dialog.style.transform = 'translate(-50%, -50%)'; // Căn giữa chính xác
-//             dialog.style.overflow = 'hidden'; // Ẩn thanh cuộn thừa
-
-//             document.body.appendChild(dialog); // Thêm vào body (chỉ khi tạo mới)
-//         } else {
-//             dialog.innerHTML = ''; // Reset nội dung (nếu cần)
-//         }
-
-//         // Thêm tiêu đề
-//         const titleBar = document.createElement('div');
-//         titleBar.style.padding = '10px';
-//         titleBar.style.backgroundColor = '#f0f0f0';
-//         titleBar.style.fontWeight = 'bold';
-//         titleBar.textContent = 'Giới thiệu về ứng dụng';
-//         dialog.appendChild(titleBar);
-
-//         // Thêm nội dung
-//         const content = document.createElement('div');
-//         content.style.padding = '20px';
-//         content.style.overflowY = 'auto'; // Thêm thanh cuộn khi cần
-//         content.style.maxHeight = '400px'; // Chiều cao tối đa cho nội dung
-//         const pre = document.createElement('pre');
-//         pre.style.whiteSpace = 'pre-wrap';
-//         pre.style.wordBreak = 'break-word';
-//         pre.textContent = text;
-//         content.appendChild(pre);
-//         dialog.appendChild(content);
-
-//         // Thêm nút OK
-//         const buttonContainer = document.createElement('div');
-//         buttonContainer.style.padding = '10px';
-//         buttonContainer.style.display = 'flex'; // Sử dụng Flexbox cho buttonContainer
-//         buttonContainer.style.justifyContent = 'flex-end'; // Căn phải nút
-//         buttonContainer.style.backgroundColor = '#f0f0f0';
-
-//         const okButton = createButton("Đóng", () => {dialog.close();});
-//         okButton.style.width = "100px";
-//         buttonContainer.appendChild(okButton);
-//         dialog.appendChild(buttonContainer);
-
-//         dialog.showModal(); // Hiển thị dialog
-
-//     } catch (error) {
-//         console.error("Lỗi khi đọc file txt:", error);
-//         alert("Không thể tải nội dung file.");
-//     }
-// }

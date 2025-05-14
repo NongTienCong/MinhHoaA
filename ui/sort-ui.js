@@ -140,7 +140,8 @@ export function setupSortUI() {
 
     // Nút sắp xếp nhanh
     const quickSortBtn = createButton("Sắp xếp nhanh", () => {
-      showFileTxt("../modules/quickSort.txt");
+      //showFileTxt("../modules/quickSort.txt");
+      showFileTxt("quickSort");
       window.sortSim.quickSort().then(() => {
         resultContent.textContent = "🚀 Dãy số đã được sắp xếp!";
       });
@@ -149,7 +150,8 @@ export function setupSortUI() {
 
     // Nút sắp xếp trộn
     const megerSortBtn = createButton("Sắp xếp trộn", () => {
-      showFileTxt("../modules/mergeSort.txt");
+      //showFileTxt("../modules/mergeSort.txt");
+      showFileTxt("mergeSort");
       window.sortSim.mergeSort().then(() => {
         resultContent.textContent = "🚀 Dãy số đã được sắp xếp!";
       });

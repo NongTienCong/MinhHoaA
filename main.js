@@ -28,12 +28,9 @@ function onModelSelected(name) {
     const mainLayout = document.getElementById("main-layout");
     control.innerHTML = "";
     explain.innerHTML = "";
-
     // 🟩 Hiển thị vùng nội dung khi có lựa chọn hợp lệ
     mainLayout.style.display = "flex";
-
     let module = null;
-
     switch (name) {
         case 'About':
           // Gọi hàm showDialog() để hiển thị giới thiệu

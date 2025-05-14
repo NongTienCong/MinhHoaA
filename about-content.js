@@ -1,5 +1,4 @@
-export const aboutText = `
-Ứng dụng này được xây dựng nhằm hỗ trợ hiệu quả cho hoạt động giảng dạy và học tập môn Cấu trúc dữ liệu và Giải thuật thông qua việc mô phỏng trực quan các cấu trúc dữ liệu và thuật toán cơ bản. Các nội dung mô phỏng trong ứng dụng bao gồm:
+export const aboutText = `Ứng dụng này được xây dựng nhằm hỗ trợ hiệu quả cho hoạt động giảng dạy và học tập môn Cấu trúc dữ liệu và Giải thuật thông qua việc mô phỏng trực quan các cấu trúc dữ liệu và thuật toán cơ bản. Các nội dung mô phỏng trong ứng dụng bao gồm:
 1. Mô phỏng thao tác cơ bản trên các cấu trúc dữ liệu nền tảng, bao gồm:
     - Mảng (Array)
     - Danh sách liên kết đơn (Singly Linked List)

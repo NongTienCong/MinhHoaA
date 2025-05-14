@@ -1,40 +1,33 @@
 // 📁 ui/array-ui.js
 // Trình cài đặt giao diện mô phỏng cấu trúc mảng
 import { createInput, createButton, createHR, showPseudo } from './render-control.js';
-
 export function setupArrayUI() {
   const control = document.getElementById("control-panel");
-
   const explainPanel = document.getElementById("explanation-panel");
   let explainContent = document.getElementById("explanation-content");
   let resultContent = document.getElementById("result-content");
-
   // Nếu phần tử explanation-content chưa tồn tại, tạo mới
   if (!explainContent) {
     explainContent = document.createElement("div");
     explainContent.id = "explanation-content";
     explainPanel.appendChild(explainContent);
   }
-
   // Nếu phần tử result-content chưa tồn tại, tạo mới
   if (!resultContent) {
     resultContent = document.createElement("div");
     resultContent.id = "result-content";
     explainPanel.appendChild(resultContent);
   }
-
   // Tiêu đề vùng điều khiển
   const controlTitle = document.createElement("h3");
   controlTitle.textContent = "🔧 Điều khiển";
   control.appendChild(controlTitle);
-
   // Tiêu đề vùng giải thích (chỉ thêm nếu chưa có)
   if (!explainPanel.querySelector("h3")) {
     const explainTitle = document.createElement("h3");
     explainTitle.textContent = "📝 Giải thích";
     explainPanel.insertBefore(explainTitle, explainContent);
   }
-
   // Thêm nội dung vùng giải thích
   explainContent.innerHTML = `
         <ol>

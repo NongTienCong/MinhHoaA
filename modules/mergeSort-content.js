@@ -1,4 +1,4 @@
-// mergeSort(a[], low, high)
+export const mergeSortText = `// mergeSort(a[], low, high)
   if(low < high)
     mid = (low + high) / 2
     mergeSort(a[], low, mid)
@@ -32,4 +32,4 @@
   while(j < n2)
     a[k] = R[j]
     j++
-    k++
+    k++`;
